@@ -1,6 +1,7 @@
 import React from "react";
-import "./App.css";
+
 import NotebooksList from "./components/NotebooksList";
+import notebookStore from "./stores/NotebookStore";
 
 function App() {
   return (
