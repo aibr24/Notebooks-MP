@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import noteStore from "../../stores/NoteStore";
 
-const NoteModal = ({ isOpen, closeModal, notebook }) => {
-  const [note, setNote] = useState({
-    title: "",
-    text: "",
-  });
+const NoteModal = ({ isOpen, closeModal, notebook, oldNote }) => {
+  const [note, setNote] = useState(
+    oldNote || {
+      title: "",
+      text: "",
+    }
+  );
 
   const handleChange = (event) => {
     setNote({
@@ -18,7 +20,7 @@ const NoteModal = ({ isOpen, closeModal, notebook }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(note);
-    noteStore.createNote(note, notebook);
+    noteStore[oldNote ? "updateNote" : "createNote"](note, notebook);
     closeModal();
   };
 

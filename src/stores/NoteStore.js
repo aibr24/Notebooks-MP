@@ -29,6 +29,15 @@ class NoteStore {
       console.log("NoteBookSTORE ----> Create!", error);
     }
   };
+
+  updateNote = async (updatedNote) => {
+    const res = await axios.put(
+      `http://localhost:8000/notes/${updatedNote.id}`,
+      updatedNote
+    );
+    const noteItem = this.notes.find((note) => note.id === updatedNote.id);
+    for (const key in noteItem) noteItem[key] = updatedNote[key];
+  };
 }
 decorate(NoteStore, {
   notes: observable,
