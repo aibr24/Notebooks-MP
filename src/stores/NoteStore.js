@@ -4,6 +4,8 @@ import axios from "axios";
 class NoteStore {
   notes = [];
 
+  getNoteById = (noteId) => this.notes.find((note) => note.id === noteId);
+
   fetchNotes = async () => {
     try {
       const res = await axios.get("http://localhost:8000/notes");
@@ -13,15 +15,16 @@ class NoteStore {
     }
   };
 
-  createNote = async (noteItem) => {
-    // console.log(notebookItem);
+  createNote = async (noteItem, notebook) => {
+    console.log(noteItem, notebook);
     try {
-      //   const formData = new FormData();
+      const res = await axios.post(
+        `http://localhost:8000/notebooks/${notebook.id}/notes`,
+        noteItem
+      );
 
-      //   for (const key in notebookItem) formData.append(key, notebookItem[key]);
-      const res = await axios.post("http://localhost:8000/notes", noteItem);
-      console.log(noteItem);
       this.notes.push(res.data);
+      notebook.notes.push({ id: res.data.id });
     } catch (error) {
       console.log("NoteBookSTORE ----> Create!", error);
     }

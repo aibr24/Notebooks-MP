@@ -28,7 +28,7 @@ const NotebookModal = ({ isOpen, closeModal }) => {
         onRequestClose={closeModal}
         contentLabel="Create Game"
       >
-        <h3>New Game</h3>
+        <h3>New Notebook</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group row">
             <div className="col-6">

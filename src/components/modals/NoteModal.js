@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import noteStore from "../../stores/NoteStore";
 
-const NoteModal = ({ isOpen, closeModal }) => {
+const NoteModal = ({ isOpen, closeModal, notebook }) => {
   const [note, setNote] = useState({
     title: "",
     text: "",
@@ -18,7 +18,7 @@ const NoteModal = ({ isOpen, closeModal }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(note);
-    noteStore.createNote(note);
+    noteStore.createNote(note, notebook);
     closeModal();
   };
 
@@ -27,7 +27,7 @@ const NoteModal = ({ isOpen, closeModal }) => {
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
-        contentLabel="Create Game"
+        contentLabel="Create Note"
       >
         <h3>New Note</h3>
         <form onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
 import React from "react";
-import noteStore from "../stores/NoteStore";
+
 import { observer } from "mobx-react";
 
 const NoteItem = ({ note }) => {

@@ -14,11 +14,7 @@ class NotebookStore {
   };
 
   createNotebook = async (notebookItem) => {
-    // console.log(notebookItem);
     try {
-      //   const formData = new FormData();
-
-      //   for (const key in notebookItem) formData.append(key, notebookItem[key]);
       const res = await axios.post(
         "http://localhost:8000/notebooks",
         notebookItem
